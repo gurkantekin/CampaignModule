@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CampaignModule.Data.Access\CampaignModule.Data.Access.csproj" />
+    <ProjectReference Include="..\CampaignModule.Exception.Handler\CampaignModule.Exception.Handler.csproj" />
+  </ItemGroup>
+
+</Project>
