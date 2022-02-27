@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CampaignModule.Business.Access.Manager
 {
-    public class ProductsManager
+    public class ProductManager
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository<Products> _productRepository;
-        public ProductsManager(IMapper mapper, IProductRepository<Products> productRepository)
+        public ProductManager(IMapper mapper, IProductRepository<Products> productRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;

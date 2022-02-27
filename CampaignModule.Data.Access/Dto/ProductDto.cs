@@ -4,6 +4,7 @@
     {
         public string ProductCode { get; set; }
         public double Price { get; set; }
+        public double CurrentPrice { get; set; }
         public int Stock { get; set; }
     }
 }

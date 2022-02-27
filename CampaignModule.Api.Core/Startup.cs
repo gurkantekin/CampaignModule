@@ -41,6 +41,8 @@ namespace CampaignModule.Api.Core
             services.AddTransient<IOrderRepository<Orders>, OrderRepository>();
 
             services.AddTransient<CampaignManager, CampaignManager>();
+            services.AddTransient<ProductManager, ProductManager>();
+            services.AddTransient<OrderManager, OrderManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

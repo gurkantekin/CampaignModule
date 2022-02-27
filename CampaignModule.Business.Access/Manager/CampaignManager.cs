@@ -72,12 +72,11 @@ namespace CampaignModule.Business.Access.Manager
         {
             try
             {
-                var campaigns = _campaignRepository.GetAll().ToList();
+                var campaign = _campaignRepository.GetByName(campaignDto.Name);
 
-                foreach (var item in campaigns)
-                {
-                    _campaignRepository.Update(_mapper.Map<Campaigns>(item));
-                }
+                campaign.Duration = campaignDto.Duration;
+
+                _campaignRepository.Update(_mapper.Map<Campaigns>(campaign));
 
                 return true;
             }
@@ -127,6 +126,11 @@ namespace CampaignModule.Business.Access.Manager
 
                 throw databaseOperationException;
             }
+        }
+
+        public bool ValidateCampaign()
+        {
+            return true;
         }
     }
 }

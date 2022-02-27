@@ -13,6 +13,9 @@ namespace CampaignModule.Data.Access.Entity
         [Display(Name = "Price")]
         public double Price { get; set; }
         [Required]
+        [Display(Name = "CurrentPrice")]
+        public double CurrentPrice { get; set; }
+        [Required]
         [Display(Name = "Stock")]
         public int Stock { get; set; }
     }

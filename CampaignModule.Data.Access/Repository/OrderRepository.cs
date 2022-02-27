@@ -25,9 +25,9 @@ namespace CampaignModule.Data.Access.Repository
             return _applicationDbContext.Orders;
         }
 
-        public Orders GetById(int id)
+        public IEnumerable<Orders> GetByProductCode(string productCode)
         {
-            return _applicationDbContext.Orders.FirstOrDefault(x => x.Id.Equals(id));
+            return _applicationDbContext.Orders.Where(x => x.ProductCode.Equals(productCode)).ToList();
         }
 
         public void Update(Orders @object)

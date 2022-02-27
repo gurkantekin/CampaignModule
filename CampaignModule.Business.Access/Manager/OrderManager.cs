@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using CampaignModule.Data.Access.Dto;
 using CampaignModule.Data.Access.Entity;
 using CampaignModule.Data.Access.Interface;
@@ -45,11 +46,11 @@ namespace CampaignModule.Business.Access.Manager
                 throw databaseOperationException;
             }
         }
-        public OrderDto GetById(int id)
+        public List<OrderDto> GetByProductCode(string productCode)
         {
             try
             {
-                return _mapper.Map<OrderDto>(_orderRepository.GetById(id));
+                return _mapper.Map<List<OrderDto>>(_orderRepository.GetByProductCode(productCode));
             }
             catch (System.Exception exception)
             {
