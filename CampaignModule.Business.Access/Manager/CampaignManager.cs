@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using CampaignModule.Data.Access.Dto;
 using CampaignModule.Data.Access.Entity;
 using CampaignModule.Data.Access.Interface;
@@ -128,9 +129,32 @@ namespace CampaignModule.Business.Access.Manager
             }
         }
 
-        public bool ValidateCampaign()
+        public bool ValidateCampaign(string campaignName)
         {
-            return true;
+            try
+            {
+                var campaign =_mapper.Map<CampaignDto>(_campaignRepository.GetByName(campaignName));
+                var duration = campaign.Duration;
+                var elapsedTime = DateTime.Parse(DateTime.Now.ToShortTimeString()).Subtract(DateTime.Parse("00:00"));
+
+                return elapsedTime.TotalHours <= duration;
+            }
+            catch (System.Exception exception)
+            {
+                var methodBase = MethodBase.GetCurrentMethod();
+
+                var databaseOperationException = new DatabaseOperationException(new DatabaseExceptionModel()
+                {
+                    NameSpace = methodBase?.DeclaringType?.Namespace,
+                    ClassName = methodBase?.Name,
+                    DataBaseName = RegularTableConstant.DatabaseName,
+                    MethodName = methodBase?.Name,
+                    Operation = DatabaseOperationEnum.Select,
+                    TableName = RegularTableConstant.CampaignTable
+                }, exception.Message, exception.InnerException);
+
+                throw databaseOperationException;
+            }
         }
     }
 }

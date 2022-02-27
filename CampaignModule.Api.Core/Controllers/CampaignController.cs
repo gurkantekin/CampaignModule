@@ -108,7 +108,7 @@ namespace CampaignModule.Api.Core.Controllers
                 var totalSales = orders.Count();
                 var averageItemPrice = (product.Price + product.CurrentPrice) / 2;
                 var turnover = totalSales * targetSales;
-                var status = _campaignManager.ValidateCampaign() ? CampaignStatus.Active : CampaignStatus.Ending;
+                var status = _campaignManager.ValidateCampaign(campaignName) ? CampaignStatus.Active : CampaignStatus.Ending;
 
                 var response = new GetCampaignInfoResponseModel()
                 {
